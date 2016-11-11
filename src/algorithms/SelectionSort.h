@@ -17,20 +17,19 @@ public:
 
 template<typename T, size_t SIZE>
 void SelectionSort::selectionSortAnArray(array<T, SIZE> &a, searchtype stype) {
-    MinimumSearch minimumSearch;
 
     for (size_t i = 0; i < SIZE; i++) {
         T *j;
         switch(stype)
         {
             case normal:
-                j = minimumSearch.findMinimumInRange(a, i, SIZE - 1);
+                j = findMinimumInRange(a, i, SIZE - 1);
                 break;
             case cachelinejump:
-                j = minimumSearch.findMinimumWithJumpCachelineInRange(a, i, SIZE - 1);
+                j = findMinimumWithJumpCachelineInRange(a, i, SIZE - 1);
                 break;
             case prefetch:
-                j = minimumSearch.findMinimumWithPrefetchInRange(a, i, SIZE - 1);
+                j = findMinimumWithPrefetchInRange(a, i, SIZE - 1);
                 break;
         }
         swap(a[i], *j);

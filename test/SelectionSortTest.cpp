@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../src/alogrithms/SelectionSort.h"
+#include "../src/algorithms/SelectionSort.h"
 
 using namespace std;
 

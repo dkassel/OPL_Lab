@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../src/alogrithms/Insertionsort.h"
+#include "../src/algorithms/Insertionsort.h"
 
 
 using namespace std;

@@ -2,7 +2,7 @@
 #include <random>
 
 
-#include "../src/alogrithms/MinimumSearch.h"
+#include "../src/algorithms/MinimumSearch.h"
 
 using namespace std;
 

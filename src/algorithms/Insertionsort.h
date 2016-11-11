@@ -16,7 +16,6 @@ public:
 
 template<typename T, size_t SIZE>
 void InsertionSort::insertionSortOnArray(array<T, SIZE> &a) {
-    MinimumSearch minimumSearch;
     T temp;
     for (size_t i = 1; i < SIZE; i++) {
         temp = a[i];

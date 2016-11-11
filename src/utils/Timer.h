@@ -1,6 +1,6 @@
 #ifndef OPL_TIMER_H
 #define OPL_TIMER_H
-
+/*
 #include <chrono>
 
 using namespace std;
@@ -21,5 +21,5 @@ public:
         return duration_cast<microseconds>(end - start).count();
     }
 };
-
+*/
 #endif //OPL_TIMER_H
