@@ -7,35 +7,28 @@
 
 using namespace std;
 
-class SelectionSort {
-public:
-    enum searchtype { normal, cachelinejump, prefetch };
-
-    template<typename T, size_t SIZE>
-    void selectionSortAnArray(array<T, SIZE> &a, searchtype stype);
-};
 
 template<typename T, size_t SIZE>
-void SelectionSort::selectionSortAnArray(array<T, SIZE> &a, searchtype stype) {
-
+void selectionSortAnArray(array<T, SIZE> &a) {
     for (size_t i = 0; i < SIZE; i++) {
-        T *j;
-        switch(stype)
-        {
-            case normal:
-                j = findMinimumInRange(a, i, SIZE - 1);
-                break;
-            case cachelinejump:
-                j = findMinimumWithJumpCachelineInRange(a, i, SIZE - 1);
-                break;
-            case prefetch:
-                j = findMinimumWithPrefetchInRange(a, i, SIZE - 1);
-                break;
-        }
-        swap(a[i], *j);
+        swap(a[i], *findMinimumInRange(a, i, SIZE - 1));
     }
-    //for (size_t i = 0; i < SIZE; i++) { cout << a[i] << endl; }
+}
 
+
+template<typename T, size_t SIZE>
+void selectionSortAnArrayWithJumpCacheline(array<T, SIZE> &a) {
+    for (size_t i = 0; i < SIZE; i++) {
+        swap(a[i], *findMinimumWithJumpCachelineInRange(a, i, SIZE - 1));
+    }
+}
+
+
+template<typename T, size_t SIZE>
+void selectionSortAnArrayWithPrefetch(array<T, SIZE> &a) {
+    for (size_t i = 0; i < SIZE; i++) {
+        swap(a[i], *findMinimumWithPrefetchInRange(a, i, SIZE - 1));
+    }
 }
 
 

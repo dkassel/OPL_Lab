@@ -2,6 +2,7 @@
 #define OPL_MEASUREMENT_H
 
 #include "algorithms/MinimumSearch.h"
+#include "algorithms/SelectionSort.h"
 #include <sstream>
 #include <chrono>
 #include <iostream>
@@ -13,6 +14,7 @@ using namespace chrono;
 
 template<typename T, size_t SIZE>
 void measureMinimumSearch(array<T, SIZE> &a, T *(*func)(array<T, SIZE> &a), stringstream &iostream) {
+
     T minimum;
     for (size_t i = 1; i <= 3; i++) {
         switch (i) {
@@ -41,10 +43,12 @@ void measureMinimumSearch(array<T, SIZE> &a, T *(*func)(array<T, SIZE> &a), stri
     }
 
 }
+
 
 template<typename T, size_t SIZE>
-void measureSelectionSort(array<T, SIZE> &a, T *(*func)(array<T, SIZE> &a), stringstream &iostream) {
-    T minimum;
+void measureSelectionSort(array<T, SIZE> &a, void (*func)(array<T, SIZE> &a), stringstream &iostream) {
+    //T minimum;
+
     for (size_t i = 1; i <= 3; i++) {
         switch (i) {
             case 1:
@@ -64,12 +68,13 @@ void measureSelectionSort(array<T, SIZE> &a, T *(*func)(array<T, SIZE> &a), stri
 
         high_resolution_clock::time_point start = high_resolution_clock::now();
 
-        minimum = *func(a);
+        func(a);
 
         high_resolution_clock::time_point end = high_resolution_clock::now();
         long duration = duration_cast<microseconds>(end - start).count();
-        iostream << minimum << "       |   Time: " << duration << "  | ArraySize: " << a.size() << endl;
+        iostream << "Time: " << duration << "  | ArraySize: " << a.size() << endl;
     }
 }
+
 
 #endif //OPL_MEASUREMENT_H
