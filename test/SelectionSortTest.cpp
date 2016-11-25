@@ -21,29 +21,36 @@ public:
 TEST_F(SelectionSortTest, selectionSortTest_Integer) {
     array<int, 8> arr = {8, 7, 6, 5, 4, 3, 2, 1};
     selectionSortAnArray(arr);
-    for (int i = 0,; i < 8; i++) {
+
+
+    for (int i = 0; i < 8; i++) {
         GTEST_ASSERT_EQ(arr[i], i + 1);
     }
 
     arr = {8, 7, 6, 5, 4, 3, 2, 1};
     selectionSortAnArrayWithJumpCacheline(arr);
-    for (int i = 0,; i < 8; i++) {
+    for (size_t i = 0; i < 8; i++) {
+        cout << arr[i] << endl;
+    }
+    for (int i = 0; i < 8; i++) {
         GTEST_ASSERT_EQ(arr[i], i + 1);
     }
 
     arr = {8, 7, 6, 5, 4, 3, 2, 1};
     selectionSortAnArrayWithPrefetch(arr);
-    for (int i = 0,; i < 8; i++) {
+    for (int i = 0; i < 8; i++) {
         GTEST_ASSERT_EQ(arr[i], i + 1);
     }
+
 }
+
 
 
 TEST_F(SelectionSortTest, selectionSortTest_Double) {
     array<double, 8> arr = {8, 7, 6, 5, 4, 3, 2, 1};
     selectionSortAnArray(arr);
     double k = 1;
-    for (int i = 0,; i < 8; i++) {
+    for (int i = 0; i < 8; i++) {
         GTEST_ASSERT_EQ(arr[i], k);
         k += 1;
     }
@@ -51,7 +58,7 @@ TEST_F(SelectionSortTest, selectionSortTest_Double) {
     arr = {8, 7, 6, 5, 4, 3, 2, 1};
     selectionSortAnArrayWithJumpCacheline(arr);
     k = 1;
-    for (int i = 0,; i < 8; i++) {
+    for (int i = 0; i < 8; i++) {
         GTEST_ASSERT_EQ(arr[i], k);
         k += 1;
     }
@@ -59,7 +66,7 @@ TEST_F(SelectionSortTest, selectionSortTest_Double) {
     arr = {8, 7, 6, 5, 4, 3, 2, 1};
     selectionSortAnArrayWithPrefetch(arr);
     k = 1;
-    for (int i = 0,; i < 8; i++) {
+    for (int i = 0; i < 8; i++) {
         GTEST_ASSERT_EQ(arr[i], k);
         k += 1;
     }

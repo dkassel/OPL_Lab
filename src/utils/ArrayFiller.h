@@ -40,7 +40,9 @@ void fillArrayRandom(array<T, SIZE> &a) {
 void clearCache() {
     array<long, CACHE_SIZE> *a = new array<long, CACHE_SIZE>();
 
-    for (int i = 0; i < CACHE_SIZE; i++) { a->at(i) = 1L; }
+    for (int i = 0; i < CACHE_SIZE; i++) {
+        a->at(i) = 1L;
+    }
     delete a;
 }
 

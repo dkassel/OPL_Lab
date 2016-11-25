@@ -22,8 +22,7 @@ public:
 
 TEST_F(InsertionSortTest, InsertSortTest_Integer) {
     array<int, 8> arr = {2, 6, 1, 4, 5, 3, 8, 7};
-    InsertionSort iSort;
-    iSort.insertionSortOnArray(arr);
+    insertionSortOnArray(arr);
     GTEST_ASSERT_EQ(arr[0], 1);
     GTEST_ASSERT_EQ(arr[1], 2);
     GTEST_ASSERT_EQ(arr[2], 3);
@@ -36,8 +35,7 @@ TEST_F(InsertionSortTest, InsertSortTest_Integer) {
 
 TEST_F(InsertionSortTest, InsertSortTest_Double) {
     array<double, 8> arr = {2.0, 3.0, 1.5, 4.1, 4.3, 6.0, 7.0, 8.3};
-    InsertionSort iSort;
-    iSort.insertionSortOnArray(arr);
+    insertionSortOnArray(arr);
     GTEST_ASSERT_EQ(arr[0], 1.5);
     GTEST_ASSERT_EQ(arr[1], 2);
     GTEST_ASSERT_EQ(arr[2], 3);
@@ -51,18 +49,22 @@ TEST_F(InsertionSortTest, InsertSortTest_Double) {
 // BOOLEAN TEST
 TEST_F(InsertionSortTest, InsertSortTest_Bool) {
     array<bool, 8> boolArray = {true, true, false, true, false, false, false, true};
-    InsertionSort iSort;
-    //iSort.insertionSortOnArray(boolArray);
-    //GTEST_ASSERT_EQ(boolArray[0], true);
-    //GTEST_ASSERT_EQ(boolArray[5], false);
+    insertionSortOnArray(boolArray);
+    GTEST_ASSERT_EQ(boolArray[0], false);
+    GTEST_ASSERT_EQ(boolArray[1], false);
+    GTEST_ASSERT_EQ(boolArray[2], false);
+    GTEST_ASSERT_EQ(boolArray[3], false);
+    GTEST_ASSERT_EQ(boolArray[4], true);
+    GTEST_ASSERT_EQ(boolArray[5], true);
+    GTEST_ASSERT_EQ(boolArray[6], true);
+    GTEST_ASSERT_EQ(boolArray[7], true);
 }
 
 
 // CHAR TEST
 TEST_F(InsertionSortTest, InsertSortTest_Char) {
-    array<char, 8> charArray = {'a', 'b', 'c', 'd', 'e', 'f', 'h', 'i'};
-    InsertionSort iSort;
-    iSort.insertionSortOnArray(charArray);
+    array<char, 8> charArray = {'b', 'a', 'c', 'f', 'd', 'e', 'h', 'i'};
+    insertionSortOnArray(charArray);
     GTEST_ASSERT_EQ(charArray[0], 'a');
     GTEST_ASSERT_EQ(charArray[1], 'b');
     GTEST_ASSERT_EQ(charArray[2], 'c');

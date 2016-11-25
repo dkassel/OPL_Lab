@@ -14,21 +14,22 @@ using namespace chrono;
 
 template<typename T, size_t SIZE>
 void measureMinimumSearch(array<T, SIZE> &a, T *(*func)(array<T, SIZE> &a), stringstream &iostream) {
-
     T minimum;
+
+    iostream << a.size() << "&";
     for (size_t i = 1; i <= 3; i++) {
         switch (i) {
             case 1:
                 fillArrayAsc(a);
-                iostream << "Result ASC : ";
+                //iostream << "Result ASC : ";
                 break;
             case 2:
                 fillArrayDesc(a);
-                iostream << "Result DESC: ";
+                //iostream << "Result DESC: ";
                 break;
             case 3:
                 fillArrayRandom(a);
-                iostream << "Result RAND: ";
+                //iostream << "Result RAND: ";
                 break;
         }
         clearCache();
@@ -38,8 +39,11 @@ void measureMinimumSearch(array<T, SIZE> &a, T *(*func)(array<T, SIZE> &a), stri
         minimum = *func(a);
 
         high_resolution_clock::time_point end = high_resolution_clock::now();
+        cout << minimum << endl;
         long duration = duration_cast<microseconds>(end - start).count();
-        iostream << minimum << "       |   Time: " << duration << "  | ArraySize: " << a.size() << endl;
+        iostream << duration << "&";
+        //iostream << minimum << "       |   Time: " << duration << endl; //"  | ArraySize: " << a.size() << endl;
+        //cout << a.size() << "&" << "\\\\\\hline" << endl;
     }
 
 }
@@ -47,21 +51,21 @@ void measureMinimumSearch(array<T, SIZE> &a, T *(*func)(array<T, SIZE> &a), stri
 
 template<typename T, size_t SIZE>
 void measureSelectionSort(array<T, SIZE> &a, void (*func)(array<T, SIZE> &a), stringstream &iostream) {
-    //T minimum;
+    iostream << a.size() << "&";
 
     for (size_t i = 1; i <= 3; i++) {
         switch (i) {
             case 1:
                 fillArrayAsc(a);
-                iostream << "Result ASC : ";
+//                iostream << "Result ASC : ";
                 break;
             case 2:
                 fillArrayDesc(a);
-                iostream << "Result DESC: ";
+//                iostream << "Result DESC: ";
                 break;
             case 3:
                 fillArrayRandom(a);
-                iostream << "Result RAND: ";
+//                iostream << "Result RAND: ";
                 break;
         }
         clearCache();
@@ -71,8 +75,11 @@ void measureSelectionSort(array<T, SIZE> &a, void (*func)(array<T, SIZE> &a), st
         func(a);
 
         high_resolution_clock::time_point end = high_resolution_clock::now();
+
         long duration = duration_cast<microseconds>(end - start).count();
-        iostream << "Time: " << duration << "  | ArraySize: " << a.size() << endl;
+        iostream << duration << "&";
+
+//        iostream << "Time: " << duration << endl; //<< "  | ArraySize: " << a.size() << endl;
     }
 }
 
