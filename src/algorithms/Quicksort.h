@@ -7,82 +7,56 @@ using namespace std;
 
 
 template<typename T, size_t SIZE>
-void quickSortAnArray(array<T, SIZE> &a, int startIndex, int endIndex) {
+void quickSort(array<T, SIZE> &a, int l, int r) {
+    int i = l - 1;
+    int j = r;
+    int p = l - 1;
+    int q = r;
 
-    int pivotIndex = (endIndex - startIndex) / 2;
-    cout << "pivotelem " << pivotIndex << endl;
-    if (pivotIndex > 0) {
-//        cout << "pivotelem " << a[pivotIndex] << endl;
-        int j = pivotIndex + 1;
-        for (int i = startIndex; i < pivotIndex; i++) {
-            while (a[i] > a[pivotIndex] && j <= endIndex) {
-//                cout << "i " << i << " , j " << j << endl;
-                swap(a[i], a[j]);
-                j++;
-            }
+    // Verwende mittleres Element als Pivot-Element.
+    swap(a[(l + r) / 2], a[r]);
+
+    T v = a[r];
+    if (r <= l) return;
+
+    for (;;) {
+        while (a[++i] < v);
+
+        while (v < a[--j])
+            if (j == l) break;
+
+        if (i >= j)
+            break;
+
+        swap(a[i], a[j]);
+
+        if (a[i] == v) {
+            p++;
+            swap(a[p], a[i]);
         }
-        cout << "Result: " << endl;
-        for (size_t i = 0; i < 8; i++) {
-            cout << "Value: " << a[i] << endl;
+        if (v == a[j]) {
+            q--;
+            swap(a[j], a[q]);
         }
-
-        cout << startIndex << " " << endIndex << endl;
-
-        quickSortAnArray(a, startIndex, pivotIndex - 1);
-        quickSortAnArray(a, pivotIndex + 1, endIndex);
     }
-    /*
-    cout << "Pivot: " << a[pivotIndex] << endl << endl;
+    swap(a[i], a[r]);
+    j = i - 1;
+    i = i + 1;
 
-    for (size_t i = 0; i < SIZE; i++) {
-        cout << "Value: " << a[i] << endl;
-    }
-     */
+    for (int k = l; k < p; k++, j--)
+        swap(a[k], a[j]);
+    for (int k = r - 1; k > q; k--, i++)
+        swap(a[i], a[k]);
 
+    quickSort(a, l, j);
+    quickSort(a, i, r);
 }
-
-/*
-template<typename T, size_t SIZE>
-void quickSortAnArray(array<T, SIZE> &a) {
-    quickSortAnArray(a, 0, SIZE - 1);
-//    void quickSortAnArray(array<T, SIZE> &a, size_t startIndex, size_t endIndex) {
-
-
-    size_t arrSize = endIndex - startIndex;
-    size_t pivot1 = arrSize / 3;
-    size_t pivot2 = pivot1 + 1 + (arrSize / 3);
-    cout << pivot1 << " " << pivot2 << endl;
-
-
-}
-   */
-
-
 
 template<typename T, size_t SIZE>
-void quickSort(array<T, SIZE> &arr, int startIndex, int endIndex) {
-    int i = startIndex, j = endIndex;
-    int pivot = arr[(startIndex + endIndex) / 2];
-
-    /* partition */
-    while (i <= j) {
-        while (arr[i] < pivot)
-            i++;
-        while (arr[j] > pivot)
-            j--;
-        if (i <= j) {
-            swap(arr[i], arr[j]);
-            i++;
-            j--;
-        }
-    };
-
-    /* recursion */
-    if (startIndex < j)
-        quickSort(arr, startIndex, j);
-    if (i < endIndex)
-        quickSort(arr, i, endIndex);
+void quickSort(array<T, SIZE> &arr) {
+    quickSort(arr, 0, (int) SIZE - 1);
 }
+
 
 #endif //OPL_QUICKSORT_H
 
