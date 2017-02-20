@@ -21,9 +21,8 @@ void fillArrayAsc(array<T, SIZE> &a) {
 
 template<typename T, size_t SIZE>
 void fillArrayDesc(array<T, SIZE> &a) {
-    for (size_t i = SIZE; i > 0; i--) {
-        a[i - 1] = (T) i;
-    }
+    for (size_t i = SIZE, j = 0; i > 0; --i, ++j)
+        a[j] = (T) i - 1;
 }
 
 template<typename T, size_t SIZE>

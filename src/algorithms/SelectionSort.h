@@ -13,11 +13,6 @@ void selectionSortAnArray(array<T, SIZE> &a) {
     for (size_t i = 0; i < SIZE - 1; i++) {
         swap(a[i], *findMinimumInRange(a, i, SIZE - 1));
     }
-/*
-    for (size_t i = 0; i < 10; i++) {
-        cout << a[i] << endl;
-    }
-*/
 }
 
 
